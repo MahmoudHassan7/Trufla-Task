@@ -1,0 +1,6 @@
+select c.name, count(ewc.employee_id) CultureCarrier 
+from country c, working_center wc, employee e , employee_working_center ewc
+where c.id=e.country_id  and e.id=ewc.employee_id and wc.id=ewc.working_center_id and 
+ (SELECT (CURRENT_DATE - start_date) as experiance From employee_working_center)>=1 
+group by c.name 
+order by CultureCarrier DESC
